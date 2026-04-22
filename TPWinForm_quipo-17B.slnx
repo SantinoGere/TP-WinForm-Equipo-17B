@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="dominio/dominio.csproj" Id="b8085ef5-c606-43e6-bb38-1a6cc0c9efb9" />
+  <Project Path="negocio/negocio.csproj" Id="a181e264-1347-4459-9ce4-f03fb50ead1e" />
   <Project Path="winforms-app/winforms-app.csproj" Id="2f789515-3fbc-4604-9e3f-82bb1e208b83" />
 </Solution>
