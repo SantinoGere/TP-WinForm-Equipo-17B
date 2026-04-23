@@ -44,6 +44,8 @@
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
             this.btnAgregarUrl = new System.Windows.Forms.Button();
             this.lwUrlImagen = new System.Windows.Forms.ListView();
+            this.btnAltaArticulo = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nPrecio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -189,11 +191,33 @@
             this.lwUrlImagen.UseCompatibleStateImageBehavior = false;
             this.lwUrlImagen.View = System.Windows.Forms.View.List;
             // 
+            // btnAltaArticulo
+            // 
+            this.btnAltaArticulo.Location = new System.Drawing.Point(71, 446);
+            this.btnAltaArticulo.Name = "btnAltaArticulo";
+            this.btnAltaArticulo.Size = new System.Drawing.Size(85, 23);
+            this.btnAltaArticulo.TabIndex = 16;
+            this.btnAltaArticulo.Text = "Dar Alta";
+            this.btnAltaArticulo.UseVisualStyleBackColor = true;
+            this.btnAltaArticulo.Click += new System.EventHandler(this.btnAltaArticulo_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(206, 446);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(85, 23);
+            this.btnCancelar.TabIndex = 17;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 450);
+            this.ClientSize = new System.Drawing.Size(395, 481);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAltaArticulo);
             this.Controls.Add(this.lwUrlImagen);
             this.Controls.Add(this.btnAgregarUrl);
             this.Controls.Add(this.txtUrlImagen);
@@ -237,5 +261,7 @@
         private System.Windows.Forms.TextBox txtUrlImagen;
         private System.Windows.Forms.Button btnAgregarUrl;
         private System.Windows.Forms.ListView lwUrlImagen;
+        private System.Windows.Forms.Button btnAltaArticulo;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

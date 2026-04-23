@@ -56,5 +56,15 @@ namespace winforms_app
             
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAltaArticulo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
