@@ -59,7 +59,7 @@ namespace negocio
             }
 
         }
-public void eliminar(int id)
+        public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -87,4 +87,4 @@ public void eliminar(int id)
             }
         }
     }
-}}
+}
