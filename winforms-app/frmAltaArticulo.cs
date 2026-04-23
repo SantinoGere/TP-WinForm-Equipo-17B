@@ -80,7 +80,7 @@ namespace winforms_app
                 string descripcionMarca = cboxMarca.Text;
                 articulo.Marca = new Marca();
                 articulo.Marca.Descripcion = descripcionMarca;
-                articulo.Marca.Id = negocioMarca.agregar(descripcionMarca);
+                articulo.Marca.Id = negocioMarca.agregarDevolverId(descripcionMarca);
             }
             articulo.Categoria = (Categoria)cboxCategoria.SelectedItem;
             articulo.Descripcion = rtxtDescripcion.Text;

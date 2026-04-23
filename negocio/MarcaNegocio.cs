@@ -44,7 +44,7 @@ namespace negocio
             }
         }
 
-        public int agregar(string marca)
+        public int agregarDevolverId(string marca)
         {
             AccesoDatos datos = new AccesoDatos();
             int id = 0;
