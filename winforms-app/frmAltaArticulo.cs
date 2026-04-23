@@ -70,55 +70,69 @@ namespace winforms_app
             CategoriaNegocio negocioCategoria = new CategoriaNegocio();
             articulo = new Articulo();
 
-            if(txtCodigoArticulo.Text == "" || txtNombre.Text == "")
+            try
             {
-                MessageBox.Show("El codigo y nombre del articulo no deben estar vacios para agregar uno nuevo!");
-                return;
-            }
-            articulo.Codigo = txtCodigoArticulo.Text;
-            articulo.Nombre = txtNombre.Text;
-            if(cboxMarca.SelectedItem != null)
-            {
-                articulo.Marca = (Marca)cboxMarca.SelectedItem;
-            }
-            else
-            {
-                string descripcionMarca = cboxMarca.Text;
-                articulo.Marca = new Marca();
-                articulo.Marca.Descripcion = descripcionMarca;
-                articulo.Marca.Id = negocioMarca.agregarDevolverId(descripcionMarca);
-            }
-            if(cboxCategoria.SelectedItem != null)
-            {
-                articulo.Categoria = (Categoria)cboxCategoria.SelectedItem;
-            }
-            else
-            {
-                string descripcionCategoria = cboxCategoria.Text;
-                articulo.Categoria = new Categoria();
-                articulo.Categoria.Descripcion = descripcionCategoria;
-                articulo.Categoria.Id = negocioCategoria.agregarDevolverId(descripcionCategoria);
-            }
-            articulo.Descripcion = rtxtDescripcion.Text;
-            articulo.Precio = nPrecio.Value;
-
-            if(lwUrlImagen.Items.Count > 0)
-            {
-                ImagenNegocio imagenNegocio = new ImagenNegocio();
-                int idArticulo = negocio.agregarDevolverId(articulo);
-
-                for(int i =0;i<lwUrlImagen.Items.Count;i++)
+                if(txtCodigoArticulo.Text == "" || txtNombre.Text == "")
                 {
-                    string url = lwUrlImagen.Items[i].Text;
-                    imagenNegocio.agregar(idArticulo, url);
+                    MessageBox.Show("El codigo y nombre del articulo no deben estar vacios para agregar uno nuevo!");
+                    if (txtCodigoArticulo.Text == "")
+                        lblFaltanteCodigoArticulo.Text = "!Faltante";
+                    if (txtNombre.Text == "")
+                        lblNombreFaltante.Text = "!Faltante";
+                    return;
+                }
+                articulo.Codigo = txtCodigoArticulo.Text;
+                articulo.Nombre = txtNombre.Text;
+                if(cboxMarca.SelectedItem != null)
+                {
+                    articulo.Marca = (Marca)cboxMarca.SelectedItem;
+                }
+                else
+                {
+                    string descripcionMarca = cboxMarca.Text;
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Descripcion = descripcionMarca;
+                    articulo.Marca.Id = negocioMarca.agregarDevolverId(descripcionMarca);
+                }
+                if(cboxCategoria.SelectedItem != null)
+                {
+                    articulo.Categoria = (Categoria)cboxCategoria.SelectedItem;
+                }
+                else
+                {
+                    string descripcionCategoria = cboxCategoria.Text;
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Descripcion = descripcionCategoria;
+                    articulo.Categoria.Id = negocioCategoria.agregarDevolverId(descripcionCategoria);
+                }
+                articulo.Descripcion = rtxtDescripcion.Text;
+                articulo.Precio = nPrecio.Value;
+
+                if(lwUrlImagen.Items.Count > 0)
+                {
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+                    int idArticulo = negocio.agregarDevolverId(articulo);
+
+                    for(int i =0;i<lwUrlImagen.Items.Count;i++)
+                    {
+                        string url = lwUrlImagen.Items[i].Text;
+                        imagenNegocio.agregar(idArticulo, url);
+                    }
+
+                }
+                else
+                {
+                    negocio.agregar(articulo);
+
                 }
 
             }
-            else
+            catch (Exception ex)
             {
-                negocio.agregar(articulo);
 
+                throw ex;
             }
+
 
 
             Close();
