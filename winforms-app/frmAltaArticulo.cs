@@ -70,6 +70,11 @@ namespace winforms_app
             CategoriaNegocio negocioCategoria = new CategoriaNegocio();
             articulo = new Articulo();
 
+            if(txtCodigoArticulo.Text == "" || txtNombre.Text == "")
+            {
+                MessageBox.Show("El codigo y nombre del articulo no deben estar vacios para agregar uno nuevo!");
+                return;
+            }
             articulo.Codigo = txtCodigoArticulo.Text;
             articulo.Nombre = txtNombre.Text;
             if(cboxMarca.SelectedItem != null)
@@ -97,7 +102,7 @@ namespace winforms_app
             articulo.Descripcion = rtxtDescripcion.Text;
             articulo.Precio = nPrecio.Value;
 
-            if(lwUrlImagen.Text != null)
+            if(lwUrlImagen.Items.Count > 0)
             {
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
                 int idArticulo = negocio.agregarDevolverId(articulo);
