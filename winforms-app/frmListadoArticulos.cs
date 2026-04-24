@@ -27,7 +27,7 @@ namespace winforms_app
 
         }
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
-{
+        {
     if (dgvArticulos.CurrentRow != null)
     {
         Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
@@ -35,11 +35,18 @@ namespace winforms_app
         lblNombre.Text = seleccionado.Nombre;
         lblDescripcion.Text = seleccionado.Descripcion;
 
-        try
+        if (seleccionado.Imagenes != null && seleccionado.Imagenes.Count > 0)
         {
-            pbArticulo.Load(seleccionado.Imagenes[0].UrlImagen);
+            try
+            {
+                pbArticulo.Load(seleccionado.Imagenes[0].UrlImagen);
+            }
+            catch
+            {
+                pbArticulo.Load("https://via.placeholder.com/150");
+            }
         }
-        catch
+        else
         {
             pbArticulo.Load("https://via.placeholder.com/150");
         }
