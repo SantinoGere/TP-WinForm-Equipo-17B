@@ -125,6 +125,7 @@ namespace winforms_app
                     negocio.agregar(articulo);
 
                 }
+                Close();
 
             }
             catch (Exception ex)
@@ -135,7 +136,6 @@ namespace winforms_app
 
 
 
-            Close();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace winforms_app
             ArticuloNegocio negocio = new ArticuloNegocio();
             List<Articulo> articulos = negocio.listar();
             dgvArticulos.DataSource = articulos;
+            dgvArticulos.Columns["Id"].Visible = false;
+
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -22,9 +22,14 @@ namespace negocio
             {
                 Articulo aux = new Articulo();
                 aux.Id = (int)datos.Lector["Id"];
+                aux.Codigo = (string)datos.Lector["Codigo"];
                 aux.Nombre = (string)datos.Lector["Nombre"];
+                aux.Descripcion = (string)datos.Lector["Descripcion"];
+                aux.Precio = (decimal)datos.Lector["Precio"];
                 aux.Marca = new Marca();
                 aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                aux.Categoria = new Categoria();
+                aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 
                 lista.Add(aux);
             }
