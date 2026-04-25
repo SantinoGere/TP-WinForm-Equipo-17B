@@ -20,6 +20,13 @@ namespace winforms_app
             InitializeComponent();
         }
 
+        public frmAltaArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Modificar articulo";
+        }
+
         private void frmAltaArticulo_Load(object sender, EventArgs e)
         {
             MarcaNegocio marca = new MarcaNegocio();
@@ -35,6 +42,33 @@ namespace winforms_app
                 cboxCategoria.DataSource = categoria.listar();
                 cboxCategoria.ValueMember = "Id";
                 cboxCategoria.DisplayMember = "Descripcion";
+
+                if (articulo != null)
+                {
+                    //txtId.Text = articulo.Id;
+                    txtCodigoArticulo.Text = articulo.Codigo;
+                    txtNombre.Text= articulo.Nombre;
+                    rtxtDescripcion.Text = articulo.Descripcion;
+                    //txtMarca.Text = articulo.Marca.ToString();
+                    cboxMarca.SelectedValue = articulo.Marca.Id;
+                    //txtCategoria = articulo.Categoria.ToString();
+                    cboxCategoria.SelectedValue = articulo.Categoria.Id;
+                    //txtPrecio.Text = articulo.Precio.ToString();
+
+                    txtUrlImagen.Text = articulo.Imagenes.ToString();
+                    if (articulo.Imagenes.ToString() != "")
+                    {
+                        try
+                        {
+                            //pbxArticulo.Load(articulo.Imagenes.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                            //pbxArticulo.Load("");
+                        }
+                    }
+                    
+                }
 
             }
             catch (Exception ex)
@@ -68,10 +102,13 @@ namespace winforms_app
             ArticuloNegocio negocio = new ArticuloNegocio();
             MarcaNegocio negocioMarca = new MarcaNegocio();
             CategoriaNegocio negocioCategoria = new CategoriaNegocio();
-            articulo = new Articulo();
+            //articulo = new Articulo();
 
             try
             {
+                if (articulo == null)
+                    articulo = new Articulo();
+
                 if(txtCodigoArticulo.Text == "" || txtNombre.Text == "")
                 {
                     MessageBox.Show("El codigo y nombre del articulo no deben estar vacios para agregar uno nuevo!");
@@ -122,7 +159,16 @@ namespace winforms_app
                 }
                 else
                 {
-                    negocio.agregar(articulo);
+                    if (articulo.Id != 0) {
+                        negocio.modificar(articulo);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        negocio.agregar(articulo);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+                    
 
                 }
                 Close();

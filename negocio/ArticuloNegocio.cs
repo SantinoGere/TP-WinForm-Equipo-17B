@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -14,7 +15,7 @@ namespace negocio
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
 
-            datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, Precio, M.Descripcion Marca, C.Descripcion Categoria FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id");
+            datos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, Precio, M.Descripcion Marca, C.Descripcion Categoria, A.IdMarca, A.IdCategoria FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id");
 
             datos.ejecutarLectura(); 
 
@@ -27,8 +28,10 @@ namespace negocio
                 aux.Descripcion = (string)datos.Lector["Descripcion"];
                 aux.Precio = (decimal)datos.Lector["Precio"];
                 aux.Marca = new Marca();
+                aux.Marca.Id = (int)datos.Lector["IdMarca"];
                 aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                 aux.Categoria = new Categoria();
+                aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                 aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 
                 lista.Add(aux);
@@ -52,6 +55,34 @@ namespace negocio
                 datos.setearParametros("@precio",articulo.Precio);
                 datos.ejecutarAccion();
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void modificar(Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, Precio = @precio Where Id = @id");
+                datos.setearParametros("@codigo", articulo.Codigo);
+                datos.setearParametros("@nombre", articulo.Nombre);
+                datos.setearParametros("@descripcion", articulo.Descripcion);
+                datos.setearParametros("@idMarca", articulo.Marca.Id);
+                datos.setearParametros("@idCategoria", articulo.Categoria.Id);
+                datos.setearParametros("@precio", articulo.Precio);
+                datos.setearParametros("@id", articulo.Id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
@@ -121,5 +152,7 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+
     }
 }
