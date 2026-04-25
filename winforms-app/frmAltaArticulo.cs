@@ -47,7 +47,7 @@ namespace winforms_app
 
         private void btnAgregarUrl_Click(object sender, EventArgs e)
         {
-            if(txtUrlImagen != null)
+            if(txtUrlImagen.Text != null && txtUrlImagen.Text != "")
             {
                 string nuevaUrl = txtUrlImagen.Text;
                 lwUrlImagen.Items.Add(nuevaUrl);

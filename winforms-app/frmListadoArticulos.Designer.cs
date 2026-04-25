@@ -85,6 +85,7 @@ namespace winforms_app
             this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnModificar
             // 
@@ -128,6 +129,7 @@ namespace winforms_app
             this.txtFiltradoRapido.Name = "txtFiltradoRapido";
             this.txtFiltradoRapido.Size = new System.Drawing.Size(282, 20);
             this.txtFiltradoRapido.TabIndex = 9;
+            this.txtFiltradoRapido.TextChanged += new System.EventHandler(this.txtFiltradoRapido_TextChanged);
             // 
             // frmListadoArticulos
             // 
