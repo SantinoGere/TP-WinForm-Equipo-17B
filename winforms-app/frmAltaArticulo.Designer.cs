@@ -49,6 +49,7 @@
             this.lblFaltanteCodigoArticulo = new System.Windows.Forms.Label();
             this.lblNombreFaltante = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -179,7 +180,7 @@
             // 
             this.btnAgregarUrl.Location = new System.Drawing.Point(297, 330);
             this.btnAgregarUrl.Name = "btnAgregarUrl";
-            this.btnAgregarUrl.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarUrl.Size = new System.Drawing.Size(100, 23);
             this.btnAgregarUrl.TabIndex = 7;
             this.btnAgregarUrl.Text = "Agregar";
             this.btnAgregarUrl.UseVisualStyleBackColor = true;
@@ -233,17 +234,28 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(134, 466);
+            this.pictureBox1.Location = new System.Drawing.Point(134, 475);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(297, 359);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Borrar Seleccion";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmAltaArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 483);
+            this.ClientSize = new System.Drawing.Size(399, 483);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblNombreFaltante);
             this.Controls.Add(this.lblFaltanteCodigoArticulo);
@@ -265,8 +277,8 @@
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txtCodigoArticulo);
             this.Controls.Add(this.lblCodigoArticulo);
-            this.MaximumSize = new System.Drawing.Size(405, 522);
-            this.MinimumSize = new System.Drawing.Size(405, 522);
+            this.MaximumSize = new System.Drawing.Size(415, 522);
+            this.MinimumSize = new System.Drawing.Size(415, 522);
             this.Name = "frmAltaArticulo";
             this.Text = "Alta de Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
@@ -300,5 +312,6 @@
         private System.Windows.Forms.Label lblFaltanteCodigoArticulo;
         private System.Windows.Forms.Label lblNombreFaltante;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -184,5 +184,23 @@ namespace winforms_app
 
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (ListViewItem url in lwUrlImagen.SelectedItems)
+                {
+                    lwUrlImagen.Items.Remove(url);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error al intentar borrar url");
+            }
+
+        }
     }
 }
