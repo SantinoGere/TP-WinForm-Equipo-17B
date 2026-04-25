@@ -121,5 +121,11 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        //public List<Articulo> filtrar(string marca, string categoria, string criterio, decimal precio)
+        //{
+        //    List<Articulo> lista = new List<Articulo>();
+        //    AccesoDatos datos = new AccesoDatos();
+        //}
     }
 }

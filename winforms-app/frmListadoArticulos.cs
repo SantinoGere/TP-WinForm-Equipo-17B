@@ -31,10 +31,43 @@ namespace winforms_app
             }
         }
 
+        private void cargarFiltro()
+        {
+            MarcaNegocio marca = new MarcaNegocio();
+            CategoriaNegocio categoria = new CategoriaNegocio();
+
+            nPrecioFiltro.Controls[0].Visible = false;
+
+            try
+            {
+                cboxMarcaFiltro.DataSource = marca.listar();
+                cboxMarcaFiltro.ValueMember = "Id";
+                cboxMarcaFiltro.DisplayMember = "Descripcion";
+                cboxCategoriaFiltro.DataSource = categoria.listar();
+                cboxCategoriaFiltro.ValueMember = "Id";
+                cboxCategoriaFiltro.DisplayMember = "Descripcion";
+
+                cboxMarcaFiltro.SelectedIndex = -1;
+                cboxMarcaFiltro.Text = "";
+                cboxCategoriaFiltro.SelectedIndex = -1;
+                cboxCategoriaFiltro.Text = "";
+
+                cboxPrecioFiltro.Items.Add(">");
+                cboxPrecioFiltro.Items.Add("<");
+                cboxPrecioFiltro.Items.Add("=");
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void frmListadoArticulos_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
             cargar();
+            cargarFiltro();
 
         }
 
@@ -44,29 +77,29 @@ namespace winforms_app
         }
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvArticulos.CurrentRow != null)
-            {
-                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            //if (dgvArticulos.CurrentRow != null)
+            //{
+            //    Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
-                lblNombre.Text = seleccionado.Nombre;
-                lblDescripcion.Text = seleccionado.Descripcion;
+            //    lblNombre.Text = seleccionado.Nombre;
+            //    lblDescripcion.Text = seleccionado.Descripcion;
 
-                if (seleccionado.Imagenes != null && seleccionado.Imagenes.Count > 0)
-                {
-                    try
-                    {
-                        pbArticulo.Load(seleccionado.Imagenes[0].UrlImagen);
-                    }
-                    catch
-                    {
-                        pbArticulo.Load("https://via.placeholder.com/150");
-                    }
-                }
-                else
-                {
-                    pbArticulo.Load("https://via.placeholder.com/150");
-                }
-            }
+            //    if (seleccionado.Imagenes != null && seleccionado.Imagenes.Count > 0)
+            //    {
+            //        try
+            //        {
+            //            pbArticulo.Load(seleccionado.Imagenes[0].UrlImagen);
+            //        }
+            //        catch
+            //        {
+            //            pbArticulo.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        pbArticulo.Load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeJQeJyzgAzTEVqXiGe90RGBFhfp_4RcJJMQ&s");
+            //    }
+            //}
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
