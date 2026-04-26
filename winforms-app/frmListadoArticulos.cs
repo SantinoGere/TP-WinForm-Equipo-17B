@@ -206,5 +206,20 @@ namespace winforms_app
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDetalleArticulo detalle = new frmDetalleArticulo((Articulo)dgvArticulos.CurrentRow.DataBoundItem);
+                detalle.ShowDialog();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al ver detalle del artiuclo");
+            }
+
+        }
     }
 }

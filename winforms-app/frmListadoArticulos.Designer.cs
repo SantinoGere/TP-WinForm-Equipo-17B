@@ -90,6 +90,7 @@ namespace winforms_app
             this.btnVerDetalle.TabIndex = 7;
             this.btnVerDetalle.Text = "Ver Detalle";
             this.btnVerDetalle.UseVisualStyleBackColor = true;
+            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
             // 
             // lblFiltradoRapido
             // 
