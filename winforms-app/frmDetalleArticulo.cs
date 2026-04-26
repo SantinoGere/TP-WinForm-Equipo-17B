@@ -16,6 +16,8 @@ namespace winforms_app
     {
         private Articulo articulo = null;
         private ImagenNegocio imagenNegocio = new ImagenNegocio();
+        int cantidadImagenes = 0;
+        int imagenActual = 0;
         public frmDetalleArticulo(Articulo articulo)
         {
             InitializeComponent();
@@ -24,11 +26,19 @@ namespace winforms_app
             {
                 this.articulo.Imagenes = new List<Imagen>();
                 this.articulo.Imagenes = imagenNegocio.GetImagenes(this.articulo.Id);
+                cantidadImagenes = this.articulo.Imagenes.Count;
             }
             catch
             {
                 this.articulo.Imagenes = null;
+                lblCantidadImagenes.Text = "";
             }
+        }
+
+        private void actualizarContadorImagenes()
+        {
+            lblCantidadImagenes.Text = imagenActual+1 + "/" + cantidadImagenes;
+
         }
 
 
@@ -49,7 +59,9 @@ namespace winforms_app
                 {
                     try
                     {
-                        pboxImagenArticulo.Load(articulo.Imagenes[0].UrlImagen);
+                        pboxImagenArticulo.Load(articulo.Imagenes[imagenActual].UrlImagen);
+                        actualizarContadorImagenes();
+
 
                     }
                     catch
@@ -65,6 +77,31 @@ namespace winforms_app
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (cantidadImagenes > 1 && cantidadImagenes > imagenActual+1)
+            {
+                imagenActual++;
+                pboxImagenArticulo.Load(articulo.Imagenes[imagenActual].UrlImagen);
+                actualizarContadorImagenes();
+
+
+            }
+
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (imagenActual > 0)
+            {
+                imagenActual--;
+                pboxImagenArticulo.Load(articulo.Imagenes[imagenActual].UrlImagen);
+                actualizarContadorImagenes();
+
+            }
+
         }
     }
 }

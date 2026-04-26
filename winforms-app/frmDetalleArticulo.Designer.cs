@@ -42,6 +42,7 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.nPrecio = new System.Windows.Forms.NumericUpDown();
+            this.lblCantidadImagenes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pboxImagenArticulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nPrecio)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             this.pboxImagenArticulo.Location = new System.Drawing.Point(12, 12);
             this.pboxImagenArticulo.Name = "pboxImagenArticulo";
             this.pboxImagenArticulo.Size = new System.Drawing.Size(250, 250);
+            this.pboxImagenArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pboxImagenArticulo.TabIndex = 0;
             this.pboxImagenArticulo.TabStop = false;
             // 
@@ -81,6 +83,7 @@
             this.btnAnterior.TabIndex = 3;
             this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // btnSiguiente
             // 
@@ -90,14 +93,15 @@
             this.btnSiguiente.TabIndex = 4;
             this.btnSiguiente.Text = ">";
             this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.Location = new System.Drawing.Point(268, 12);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 25);
+            this.lblNombre.Size = new System.Drawing.Size(56, 24);
             this.lblNombre.TabIndex = 5;
             this.lblNombre.Text = "Titulo";
             // 
@@ -185,11 +189,21 @@
             this.nPrecio.Size = new System.Drawing.Size(113, 20);
             this.nPrecio.TabIndex = 13;
             // 
+            // lblCantidadImagenes
+            // 
+            this.lblCantidadImagenes.AutoSize = true;
+            this.lblCantidadImagenes.Location = new System.Drawing.Point(238, 268);
+            this.lblCantidadImagenes.Name = "lblCantidadImagenes";
+            this.lblCantidadImagenes.Size = new System.Drawing.Size(24, 13);
+            this.lblCantidadImagenes.TabIndex = 14;
+            this.lblCantidadImagenes.Text = "0/0";
+            // 
             // frmDetalleArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 463);
+            this.Controls.Add(this.lblCantidadImagenes);
             this.Controls.Add(this.nPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblTextoCategoria);
@@ -204,6 +218,8 @@
             this.Controls.Add(this.rtxtDescripcion);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.pboxImagenArticulo);
+            this.MaximumSize = new System.Drawing.Size(487, 502);
+            this.MinimumSize = new System.Drawing.Size(487, 502);
             this.Name = "frmDetalleArticulo";
             this.Text = "frmDetalleArticulo";
             this.Load += new System.EventHandler(this.frmDetalleArticulo_Load);
@@ -230,5 +246,6 @@
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.NumericUpDown nPrecio;
+        private System.Windows.Forms.Label lblCantidadImagenes;
     }
 }
