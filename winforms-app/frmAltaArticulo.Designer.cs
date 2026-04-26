@@ -48,10 +48,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFaltanteCodigoArticulo = new System.Windows.Forms.Label();
             this.lblNombreFaltante = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnBorrarSeleccion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nPrecio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCodigoArticulo
@@ -232,14 +230,6 @@
             this.lblNombreFaltante.Size = new System.Drawing.Size(0, 13);
             this.lblNombreFaltante.TabIndex = 17;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(134, 475);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnBorrarSeleccion
             // 
             this.btnBorrarSeleccion.Location = new System.Drawing.Point(297, 359);
@@ -256,7 +246,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 483);
             this.Controls.Add(this.btnBorrarSeleccion);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblNombreFaltante);
             this.Controls.Add(this.lblFaltanteCodigoArticulo);
             this.Controls.Add(this.btnCancelar);
@@ -283,7 +272,6 @@
             this.Text = "Alta de Articulo";
             this.Load += new System.EventHandler(this.frmAltaArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nPrecio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,7 +299,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFaltanteCodigoArticulo;
         private System.Windows.Forms.Label lblNombreFaltante;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnBorrarSeleccion;
     }
 }

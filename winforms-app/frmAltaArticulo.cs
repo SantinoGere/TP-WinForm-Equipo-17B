@@ -23,8 +23,11 @@ namespace winforms_app
         public frmAltaArticulo(Articulo articulo)
         {
             InitializeComponent();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
             this.articulo = articulo;
             Text = "Modificar articulo";
+            btnAltaArticulo.Text = "Modificar";
+            articulo.Imagenes = imagenNegocio.GetImagenes(articulo.Id);
         }
 
         private void frmAltaArticulo_Load(object sender, EventArgs e)
@@ -56,11 +59,15 @@ namespace winforms_app
                     //txtPrecio.Text = articulo.Precio.ToString();
                     nPrecio.Value = articulo.Precio;
 
-                    txtUrlImagen.Text = articulo.Imagenes.ToString();
-                    if (articulo.Imagenes.ToString() != "")
+                    //txtUrlImagen.Text = articulo.Imagenes.ToString();
+                    if (articulo.Imagenes.Count > 0)
                     {
                         try
                         {
+                            foreach (Imagen url in articulo.Imagenes)
+                            {
+                                lwUrlImagen.Items.Add(url.UrlImagen);
+                            }
                             //pbxArticulo.Load(articulo.Imagenes.ToString());
                         }
                         catch (Exception ex)
@@ -82,12 +89,16 @@ namespace winforms_app
 
         private void btnAgregarUrl_Click(object sender, EventArgs e)
         {
-            if(txtUrlImagen.Text != null && txtUrlImagen.Text != "")
+            if(txtUrlImagen.Text.ToLower().Contains("http"))
             {
                 string nuevaUrl = txtUrlImagen.Text;
                 lwUrlImagen.Items.Add(nuevaUrl);
                 txtUrlImagen.Text = null;
 
+            }
+            else
+            {
+                MessageBox.Show("ingrese una url valida");
             }
             
 
@@ -146,32 +157,33 @@ namespace winforms_app
                 articulo.Descripcion = rtxtDescripcion.Text;
                 articulo.Precio = nPrecio.Value;
 
-                if(lwUrlImagen.Items.Count > 0)
-                {
-                    ImagenNegocio imagenNegocio = new ImagenNegocio();
-                    int idArticulo = negocio.agregarDevolverId(articulo);
-
-                    for(int i =0;i<lwUrlImagen.Items.Count;i++)
-                    {
-                        string url = lwUrlImagen.Items[i].Text;
-                        imagenNegocio.agregar(idArticulo, url);
-                    }
-
+                
+                if (articulo.Id != 0) {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    if (articulo.Id != 0) {
-                        negocio.modificar(articulo);
-                        MessageBox.Show("Modificado exitosamente");
+                    if(lwUrlImagen.Items.Count > 0)
+                    {
+                        ImagenNegocio imagenNegocio = new ImagenNegocio();
+                        int idArticulo = negocio.agregarDevolverId(articulo);
+
+                        for(int i =0;i<lwUrlImagen.Items.Count;i++)
+                        {
+                            string url = lwUrlImagen.Items[i].Text;
+                            imagenNegocio.agregar(idArticulo, url);
+                        }
+
                     }
                     else
                     {
                         negocio.agregar(articulo);
-                        MessageBox.Show("Agregado exitosamente");
-                    }
-                    
 
+                    }
+                    MessageBox.Show("Agregado exitosamente");
                 }
+                    
                 Close();
 
             }
@@ -189,9 +201,23 @@ namespace winforms_app
         {
             try
             {
-                foreach (ListViewItem url in lwUrlImagen.SelectedItems)
+                if (articulo.Id != 0)
                 {
-                    lwUrlImagen.Items.Remove(url);
+                    ImagenNegocio imagenNegocio = new ImagenNegocio();
+                    foreach (ListViewItem url in lwUrlImagen.SelectedItems)
+                    {
+                        lwUrlImagen.Items.Remove(url);
+                        imagenNegocio.eliminar(url.Text);
+                    }
+
+                }
+                else
+                {
+                    foreach (ListViewItem url in lwUrlImagen.SelectedItems)
+                    {
+                        lwUrlImagen.Items.Remove(url);
+                    }
+
                 }
 
             }

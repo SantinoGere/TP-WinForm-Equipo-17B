@@ -142,6 +142,7 @@ namespace negocio
                     datos.setearParametros("@id", id);
                     datos.ejecutarAccion();
                 }
+                datos.cerrarConexion();
                 // eliminar artículo
                 datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
                 datos.limpiarParametros();
