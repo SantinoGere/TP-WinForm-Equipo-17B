@@ -68,7 +68,7 @@ namespace winforms_app
         {
             cargar();
             cargarFiltro();
-
+            
         }
 
         private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -184,6 +184,27 @@ namespace winforms_app
             cboxPrecioFiltro.Text = "";
             nPrecioFiltro.Value = 0;
 
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e) //ELIMINACION FISICA
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("¿Seguro que quieres eliminar el Articulo?", "Eliminando",MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.Id);
+                    cargar();
+                }               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

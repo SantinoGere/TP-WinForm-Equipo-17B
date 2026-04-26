@@ -115,7 +115,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-
+                 
                 throw ex;
             }
             finally
@@ -128,15 +128,20 @@ namespace negocio
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
-                // eliminar imágenes primero
-                datos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @id");
+                // eliminar imágenes primero, solamente si existen
+                datos.setearConsulta("SELECT COUNT(*) FROM IMAGENES WHERE IdArticulo = @id");
                 datos.limpiarParametros();
                 datos.setearParametros("@id", id);
-                datos.ejecutarAccion();
-
+                int cantidadImagenes = datos.ejecutarEscalar();
+                if (cantidadImagenes > 0) 
+                {
+                    datos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @id");
+                    datos.limpiarParametros();
+                    datos.setearParametros("@id", id);
+                    datos.ejecutarAccion();
+                }
                 // eliminar artículo
                 datos.setearConsulta("DELETE FROM ARTICULOS WHERE Id = @id");
                 datos.limpiarParametros();
@@ -145,7 +150,7 @@ namespace negocio
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {

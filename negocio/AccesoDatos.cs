@@ -99,5 +99,26 @@ namespace negocio
                 lector.Close();
             conexion.Close();
         }
+
+        public int ejecutarEscalar()
+        {
+            int numero = -1;
+            try
+            {
+                comando.Connection = conexion;
+                conexion.Open();
+                numero = (int)comando.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cerrarConexion();   
+            }
+            return numero;
+        }
     }
 }
