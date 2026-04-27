@@ -22,6 +22,7 @@ namespace winforms_app
                 listaArticulos = negocio.listar();
                 dgvArticulos.DataSource = listaArticulos;
                 dgvArticulos.Columns["Id"].Visible = false;
+                dgvArticulos.Columns["Precio"].DefaultCellStyle.Format = "$ 0.##############";
 
             }
             catch (Exception ex)
@@ -69,11 +70,6 @@ namespace winforms_app
             cargar();
             cargarFiltro();
             
-        }
-
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
